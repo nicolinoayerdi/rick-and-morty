@@ -1,7 +1,12 @@
 import React from 'react';
 import rickmorty from "../api/rickmorty";
+import CharacterList from "./CharacterList";
+import 'semantic-ui-css/semantic.min.css';
+
 
 class App extends React.Component {
+
+	state = { characters: [] }
 
 	fun = async () => {
 		const a = await rickmorty.get('character', {
@@ -9,15 +14,16 @@ class App extends React.Component {
 				page: 1
 			}
 		});
-		console.log(a.data);
+		this.setState({ characters: a.data.results });
 	}
 
 	render() {
+		if (this.state.characters.length === 0) {
+			return <button onClick={this.fun}>GET</button>
+		}
 		return (
 		  <div>
-			  <button onClick={this.fun}>
-				  GET
-			  </button>
+			  <CharacterList characters={this.state.characters}/>
 		  </div>
         );
 	}
