@@ -15,6 +15,7 @@ class App extends React.Component {
 			}
 		});
 		this.setState({ characters: a.data.results });
+
 	}
 
 	render() {
