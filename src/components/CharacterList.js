@@ -1,48 +1,31 @@
 import React from 'react'
 import './CharacterList.css'
-import { Pagination } from "semantic-ui-react"
+import image from '../empty.jpg'
 
 const CharacterList = (props) => {
 	const characters = props.characters.map(( { id, name, status, created, image, species, gender, location}) => {
 
-		let statusStyle = status === 'Dead' ? 'dead' : '';
-		let genderStyle = getGenderIcon();
+		let statusClass = getStatusClass();
+		let genderClass = getGenderClass();
 		let createdString = formatDate();
 
 		return (
-
-			<div key={id} className="container-row">
-				<div><img src={image} className={statusStyle}/></div>
-				<div className="details">
-					<div className="container-column">
-						<div className="header">{name}</div>
-						<div className="description">
-							<div>{status}</div>
-						</div>
-					</div>
-					<div className="container-column">
-						<div>{createdString}</div>
-						<div>{species}</div>
-					</div>
-					<div className="container-column">
-						<div>{location.name}</div>
-						<div>{gender}</div>
-					</div>
-				</div>
-			</div>
-
-
-
-			/*<div key={id} className="ui card">
-				<div className="image"><img className={statusStyle} src={image} alt="no img"/></div>
+			<div key={id} className={`ui card ${statusClass}`}>
+				<div className="image"><img src={image} alt="no img"/></div>
 				<div className="content">
 					<div className="header">{name}</div>
-					<div className="description">{status}</div>
-					<div className="meta"><span className="date">{createdString}</span></div>
+					<div className="description">
+						<i className="circle icon"/>
+						{status}
+					</div>
+					<div className="meta">
+						<i className="save icon"/>
+						<span className="date">{createdString}</span>
+					</div>
 				</div>
 				<div className="extra content">
 					<div>
-						<i aria-hidden={true} className={genderStyle}/>
+						<i aria-hidden={true} className={genderClass}/>
 						{gender}
 					</div>
 					<div>
@@ -54,7 +37,7 @@ const CharacterList = (props) => {
 						{species}
 					</div>
 				</div>
-			</div>*/
+			</div>
 		);
 
 		function formatDate() {
@@ -62,19 +45,36 @@ const CharacterList = (props) => {
 			return `${creationDate.getDate()}/${creationDate.getMonth()}/${creationDate.getFullYear()}`;
 		}
 
-		function getGenderIcon() {
+		function getGenderClass() {
 			if (gender === 'Male')
-				return 'male icon';
+				return 'mars icon';
 			if (gender === 'Female')
-				return 'female icon';
+				return 'venus icon';
+			return 'genderless icon';
+		}
+
+		function getStatusClass() {
+			if (status === 'Dead')
+				return 'dead';
+			if (status === 'Alive')
+				return 'alive';
 			return '';
 		}
 	});
 
+	if (characters.length)
+		return (
+			<div className="ui cards characters">
+				{characters}
+			</div>
+		);
 	return (
-		<div role="list" className="list-container">
-			{characters}
-			<div style={{'marginTop': '16px'}}>Count: {props.info.count}</div>
+		<div className="characters">
+			<div className="no-data">
+				<div>Ups! It's seems like this dimension is empty</div>
+				<p>Please try other values for your search.</p>
+				<img src={image}/>
+			</div>
 		</div>
 	);
 };
