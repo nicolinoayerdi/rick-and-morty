@@ -3,20 +3,20 @@ import './Dropdown.css';
 
 class Dropdown extends React.Component {
 
-	state = { value: 'Gender' };
-
 	onChange = (newValue) => {
-		this.setState({ value: newValue });
 		this.props.onChange(newValue);
 	}
 
 	render() {
+		let options = Object.values(this.props.options).map(option => {
+			return <option value={option.value}>{option.label}</option>
+		});
 		return (
-			<select className="select" value={this.state.value} onChange={(e) => this.onChange(e.target.value)}>
-				<option disabled value="Gender" hidden className="placeholder">Gender</option>
-				<option value="Male">Male</option>
-				<option value="Female">Female</option>
-				<option value="unknown">Unknown</option>
+			<select className="select"
+					value={this.props.value}
+					onChange={(e) => this.onChange(e.target.value)}>
+				<option disabled value={this.props.placeholder.value} hidden className="placeholder">{this.props.placeholder.label}</option>
+				{options}
 			</select>);
 	}
 }
