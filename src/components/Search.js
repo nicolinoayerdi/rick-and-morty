@@ -13,8 +13,6 @@ class Search extends React.Component {
 	}
 
 	render() {
-		console.log(this.props);
-
 		return (
 			<form style={{'height': '100%'}} onSubmit={(event) => this.onFormSubmit(event)}>
 				<div className="ui icon input" style={{'height': '100%'}}>

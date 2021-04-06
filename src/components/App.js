@@ -28,8 +28,6 @@ class App extends React.Component {
 	};
 
 	getCharacters = async (page, filter) => {
-		console.log('getCharacters', page, filter);
-		console.log('GENDER_ALL.value', GENDER_ALL.value);
 		try {
 			const a = await rickmorty.get('character', {
 				params: {
