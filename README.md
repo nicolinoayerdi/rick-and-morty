@@ -1,8 +1,20 @@
+# Create React App
+
+Use Create React App para bootstrap del proyecto [Create React App](https://github.com/facebook/create-react-app).
+
+# Semantic UI
+
+Para la capa de presentación utilice el componente Pagination y estilos de Semantic UI https://semantic-ui.com/
+
+# Rick and Morty API
+
+Para los datos a mostrar utilicé la API de Rick and Morty:
+
+The Rick and Morty API is a RESTful and GraphQL API based on the television show Rick and Morty. You will have access to about hundreds of characters, images, locations and episodes. The Rick and Morty API is filled with canonical information as seen on the TV show. (https://rickandmortyapi.com/about)
+
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
+This project was bootstrapped with ## Available Scripts
 
 In the project directory, you can run:
 
